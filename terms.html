@@ -3,70 +3,154 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Terms of Service — AutoSwipe</title>
-  <meta name="description" content="The terms that govern your use of the AutoSwipe app." />
+  <title>Terms of Service — AutoSwiper</title>
+  <meta name="description" content="The terms that govern your use of the AutoSwiper app." />
+  <meta name="theme-color" content="#0a0a0a" />
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('autoswiper-theme');
+        if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
-  <header class="nav is-scrolled">
+  <header class="nav is-scrolled" id="nav">
     <div class="container nav__inner">
       <a class="brand" href="index.html">
-        <img class="brand__logo" src="assets/icon.png" alt="AutoSwipe logo" />
-        <span class="brand__name">AutoSwipe</span>
+        <img class="brand__logo" src="assets/icon.png" alt="AutoSwiper logo" />
+        <span class="brand__name">AutoSwiper</span>
       </a>
-      <a href="index.html" class="btn btn--sm btn--primary">Back to home</a>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark / light theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="index.html" class="btn btn--sm btn--primary">Back to home</a>
+      </div>
     </div>
   </header>
 
   <main class="legal">
     <div class="container container--narrow">
-      <a class="legal__back" href="index.html">&larr; Back to home</a>
+      <a class="legal__back" href="index.html">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to home
+      </a>
       <h1>Terms of Service</h1>
-      <p class="legal__updated">Last updated: June 2026</p>
+      <p class="legal__updated">Last updated: 25 June 2026</p>
+      <p class="legal__intro">Welcome to AutoSwiper. These Terms of Service ("Terms") form a binding agreement between you and AutoSwiper ("AutoSwiper", "we", "us", or "our") and govern your access to and use of the AutoSwiper mobile application and related services (the "App"). By downloading, installing, or using the App, you agree to these Terms. If you do not agree, please do not use the App.</p>
+
+      <div class="toc">
+        <h2>Contents</h2>
+        <ol>
+          <li><a href="#service">The service</a></li>
+          <li><a href="#eligibility">Eligibility</a></li>
+          <li><a href="#accounts">Your account</a></li>
+          <li><a href="#listings">Listings &amp; your content</a></li>
+          <li><a href="#third-party">Third-party listings</a></li>
+          <li><a href="#pricing">Price estimates</a></li>
+          <li><a href="#subscriptions">Subscriptions &amp; payments</a></li>
+          <li><a href="#ads">Advertising</a></li>
+          <li><a href="#conduct">Acceptable use</a></li>
+          <li><a href="#ip">Intellectual property</a></li>
+          <li><a href="#disclaimers">Disclaimers</a></li>
+          <li><a href="#liability">Limitation of liability</a></li>
+          <li><a href="#indemnity">Indemnification</a></li>
+          <li><a href="#termination">Termination</a></li>
+          <li><a href="#law">Governing law</a></li>
+          <li><a href="#changes">Changes</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </div>
 
       <div class="legal__content">
-        <p>Welcome to AutoSwipe (the "App"). By downloading, installing, or using the App, you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use the App.</p>
+        <h2 id="service">1. The service</h2>
+        <p>AutoSwiper is a mobile application that aggregates public automotive listings from third-party websites and individual sellers and presents them in a swipe-based interface, along with tools such as saved lists, price-drop alerts, and market-price estimates. <strong>AutoSwiper does not own, sell, inspect, or take possession of any vehicle listed on the platform.</strong> All transactions, negotiations, communications, and agreements occur directly between you and the relevant seller. We are not a party to, and accept no responsibility for, any transaction.</p>
 
-        <h2>1. Description of Service</h2>
-        <p>The App is a mobile application that aggregates public automotive listings from third-party websites and presents them in a swipe-based interface. AutoSwipe does not own, sell, or inspect any vehicles listed on the platform. All transactions, communication, and agreements occur directly between you and the respective third-party vehicle seller.</p>
+        <h2 id="eligibility">2. Eligibility</h2>
+        <p>You must be at least 18 years of age (or the age of majority in your jurisdiction) to use the App. By using the App, you represent and warrant that you meet this requirement and that the information you provide is accurate.</p>
 
-        <h2>2. Eligibility</h2>
-        <p>You must be at least 18 years of age (or the legal age of majority in your jurisdiction) to use this App. By using the App, you represent and warrant that you meet this requirement.</p>
+        <h2 id="accounts">3. Your account</h2>
+        <p>To use certain features (such as saving liked vehicles or receiving alerts), you may register using an email address or a third-party provider such as Apple or Google. You are responsible for maintaining the confidentiality of your credentials and for all activity that occurs under your account. Notify us promptly of any unauthorised use. You may delete your account at any time from within the App.</p>
 
-        <h2>3. User Accounts</h2>
-        <p>To access certain features (such as saving liked vehicles or receiving price-drop alerts), you may register for an account using a third-party provider (e.g., Google) or an email address. You are solely responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.</p>
+        <h2 id="listings">4. Listings &amp; your content</h2>
+        <p>If you create a listing or submit any content (photos, descriptions, specifications, contact details, or other materials — "User Content"), you represent and warrant that:</p>
+        <ul>
+          <li>you own or have the right to sell the vehicle and to post the content;</li>
+          <li>the listing is accurate, lawful, and not misleading;</li>
+          <li>your content does not infringe any third party's intellectual property, privacy, or other rights; and</li>
+          <li>the listing is not fraudulent, deceptive, or for a prohibited item.</li>
+        </ul>
+        <p>You retain ownership of your User Content. You grant AutoSwiper a non-exclusive, worldwide, royalty-free licence to host, store, reproduce, display, and distribute your User Content for the purpose of operating and promoting the App. We may remove any listing or content that we reasonably believe violates these Terms or applicable law.</p>
 
-        <h2>4. Third-Party Content and External Links</h2>
-        <p>The App displays data, images, descriptions, and pricing sourced from external automotive platforms and individual dealers.</p>
-        <p>We do not guarantee the accuracy, completeness, or availability of third-party listings.</p>
-        <p>Price-drop alerts are updated periodically via automation, but structural changes on original websites may cause temporary delays or discrepancies.</p>
-        <p>The App contains direct external links to original listings. We are not responsible for the content, privacy policies, or practices of any third-party websites.</p>
+        <h2 id="third-party">5. Third-party listings &amp; external links</h2>
+        <p>The App displays data, images, descriptions, and pricing sourced from external automotive platforms and individual dealers. We do not guarantee the accuracy, completeness, availability, or legality of any third-party listing. Listings and price information are updated periodically through automation, and structural changes on source websites may cause delays or discrepancies. The App contains direct links to original listings; we are not responsible for the content, products, privacy practices, or policies of any third-party website or seller.</p>
 
-        <h2>5. Prohibited Conduct</h2>
+        <h2 id="pricing">6. Price estimates</h2>
+        <p>AutoSwiper's market-price meter and valuation labels (e.g. "Great price", "Overpriced") are automated estimates provided for general informational purposes only. They are not appraisals, financial advice, or guarantees of value, and they may be inaccurate or out of date. You are solely responsible for evaluating any vehicle and its price before making a purchase decision.</p>
+
+        <h2 id="subscriptions">7. Subscriptions &amp; payments</h2>
+        <p>The App offers an optional paid subscription ("AutoSwiper Pro"). Subscriptions are billed through, and managed by, the Apple App Store or Google Play, subject to their terms. Key points:</p>
+        <ul>
+          <li>Payment is charged to your Apple or Google account at confirmation of purchase.</li>
+          <li>Subscriptions <strong>automatically renew</strong> at the then-current price unless cancelled at least 24 hours before the end of the current period.</li>
+          <li>You can manage or cancel your subscription in your App Store or Google Play account settings.</li>
+          <li>Refunds are handled by Apple or Google in accordance with their policies; we generally cannot issue refunds directly.</li>
+          <li>We may change subscription pricing or features prospectively, with notice where required by law.</li>
+        </ul>
+
+        <h2 id="ads">8. Advertising</h2>
+        <p>The free version of the App is supported by advertising served through third-party networks, including Google AdMob. By using the free version, you acknowledge that ads will be displayed. A Pro subscription removes ads.</p>
+
+        <h2 id="conduct">9. Acceptable use</h2>
         <p>You agree not to:</p>
-        <p>• Attempt to reverse engineer, disrupt, or copy the App's infrastructure, code, or algorithms.<br />
-        • Use automated systems, bots, or scrapers to extract user or vehicle data from the App.<br />
-        • Misrepresent your identity or use the platform for any fraudulent activities.</p>
+        <ul>
+          <li>reverse engineer, decompile, disrupt, overload, or attempt to gain unauthorised access to the App or its infrastructure;</li>
+          <li>use bots, scrapers, or other automated means to extract user or vehicle data from the App;</li>
+          <li>post false, fraudulent, infringing, or unlawful content;</li>
+          <li>misrepresent your identity or impersonate any person or entity;</li>
+          <li>use the App to harass, defraud, or harm others; or</li>
+          <li>use the App in violation of any applicable law or regulation.</li>
+        </ul>
 
-        <h2>6. Limitation of Liability</h2>
-        <p>AutoSwipe and its creators shall not be liable for any indirect, incidental, special, or consequential damages arising out of or in connection with your use of the platform. This includes, but is not limited to, mechanical issues, fraudulent listings by third-party sellers, financial losses from vehicle purchases, or variations in advertised vehicle pricing.</p>
+        <h2 id="ip">10. Intellectual property</h2>
+        <p>The App, including its software, design, branding, logos, and content (excluding User Content and third-party listings), is owned by AutoSwiper and protected by intellectual property laws. We grant you a limited, personal, non-exclusive, non-transferable, revocable licence to use the App for its intended purpose. You may not copy, modify, or create derivative works of the App except as permitted by law.</p>
 
-        <h2>7. Changes to Terms</h2>
-        <p>We reserve the right to modify these Terms at any time. We will notify users of significant updates via an in-app notice or email notification. Your continued use of the App following any changes constitutes acceptance of the new Terms.</p>
+        <h2 id="disclaimers">11. Disclaimers</h2>
+        <p>The App is provided on an "as is" and "as available" basis without warranties of any kind, whether express or implied, including warranties of merchantability, fitness for a particular purpose, accuracy, and non-infringement. We do not warrant that the App will be uninterrupted, error-free, or secure, or that any listing, price, or vehicle information is accurate or available.</p>
 
-        <h2>8. Contact</h2>
-        <p>Questions about these Terms? Reach us at <a href="mailto:support@autoswipe.app">support@autoswipe.app</a></p>
+        <h2 id="liability">12. Limitation of liability</h2>
+        <p>To the maximum extent permitted by law, AutoSwiper and its creators shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or for any loss of profits, data, or goodwill, arising out of or in connection with your use of the App. This includes, without limitation, mechanical issues, fraudulent or inaccurate listings by sellers, financial losses from vehicle purchases, or discrepancies in advertised pricing. Nothing in these Terms excludes liability that cannot be excluded under applicable law, including your statutory consumer rights.</p>
+
+        <h2 id="indemnity">13. Indemnification</h2>
+        <p>You agree to indemnify and hold harmless AutoSwiper and its creators from any claims, liabilities, damages, and expenses (including reasonable legal fees) arising out of your User Content, your use of the App, or your breach of these Terms or any applicable law.</p>
+
+        <h2 id="termination">14. Termination</h2>
+        <p>You may stop using the App and delete your account at any time. We may suspend or terminate your access if you violate these Terms or if we discontinue the App. Provisions that by their nature should survive termination (such as intellectual property, disclaimers, and limitation of liability) will survive.</p>
+
+        <h2 id="law">15. Governing law</h2>
+        <p>These Terms are governed by the laws of the Netherlands, without regard to its conflict-of-law rules, and any disputes shall be subject to the exclusive jurisdiction of the competent courts of the Netherlands, unless mandatory consumer protection laws in your country of residence provide otherwise.</p>
+
+        <h2 id="changes">16. Changes to these Terms</h2>
+        <p>We may modify these Terms from time to time. We will update the "Last updated" date above and, for significant changes, notify you via an in-app notice or email. Your continued use of the App after changes take effect constitutes acceptance of the revised Terms.</p>
+
+        <h2 id="contact">17. Contact</h2>
+        <p>Questions about these Terms? Contact us at <a href="mailto:hello@useautoswiper.com">hello@useautoswiper.com</a>.</p>
       </div>
     </div>
   </main>
 
   <footer class="footer">
     <div class="container footer__bottom" style="border:0;">
-      <span>© <span id="year"></span> AutoSwipe. All rights reserved.</span>
+      <span>© <span id="year"></span> AutoSwiper. All rights reserved.</span>
+      <span><a href="privacy.html" style="color:var(--text-secondary)">Privacy Policy</a></span>
     </div>
   </footer>
   <script src="assets/main.js"></script>

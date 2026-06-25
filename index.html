@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AutoSwipe — Swipe. Match. Drive.</title>
-  <meta name="description" content="AutoSwipe is Tinder for cars. Swipe through thousands of listings, save your favourites, and get instant alerts the moment a price drops." />
+  <title>AutoSwiper — Find your next car with a swipe</title>
+  <meta name="description" content="AutoSwiper is the swipe-to-discover car marketplace. Browse thousands of real listings, see instantly whether a price is fair, save your favourites, and get alerted the moment a price drops." />
 
-  <!-- Open Graph / social -->
-  <meta property="og:title" content="AutoSwipe — Swipe. Match. Drive." />
-  <meta property="og:description" content="Tinder for cars. Discover your next ride one swipe at a time." />
+  <meta property="og:title" content="AutoSwiper — Find your next car with a swipe" />
+  <meta property="og:description" content="Swipe through real car listings, spot a good deal instantly, and get price-drop alerts." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.useautoswiper.com" />
   <meta property="og:image" content="assets/icon.png" />
+  <meta name="theme-color" content="#0a0a0a" />
 
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <link rel="apple-touch-icon" href="assets/icon.png" />
@@ -18,21 +19,38 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles.css" />
+
+  <!-- Set theme before paint to avoid a flash -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('autoswiper-theme');
+        if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <!-- ===== Navbar ===== -->
   <header class="nav" id="nav">
     <div class="container nav__inner">
       <a class="brand" href="#top">
-        <img class="brand__logo" src="assets/icon.png" alt="AutoSwipe logo" />
-        <span class="brand__name">AutoSwipe</span>
+        <img class="brand__logo" src="assets/icon.png" alt="AutoSwiper logo" />
+        <span class="brand__name">AutoSwiper</span>
       </a>
       <nav class="nav__links">
         <a href="#features">Features</a>
+        <a href="#pricing-meter">Smart pricing</a>
         <a href="#how">How it works</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a href="#get" class="btn btn--sm btn--primary">Get the app</a>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark / light theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="#get" class="btn btn--sm btn--primary">Get the app</a>
+      </div>
     </div>
   </header>
 
@@ -41,14 +59,14 @@
     <section class="hero">
       <div class="container hero__inner">
         <div class="hero__copy">
-          <span class="eyebrow">Tinder for cars</span>
-          <h1 class="hero__title">Swipe.<br />Match.<br /><span class="accent">Drive.</span></h1>
+          <span class="eyebrow">The swipe-to-discover car marketplace</span>
+          <h1 class="hero__title">Find your next car with a swipe.</h1>
           <p class="hero__sub">
-            Discover your next ride one swipe at a time. Browse thousands of
-            real listings, save the ones you love, and get pinged the moment a
-            price drops.
+            Browse thousands of real listings in a fast, single-card feed. See
+            instantly whether a price is fair, save the cars you love, and get
+            alerted the moment one drops in price.
           </p>
-          <div class="hero__cta" id="get">
+          <div class="badges" id="get">
             <a href="#" class="store-badge" aria-label="Download on the App Store">
               <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M16.36 1c.05 1.06-.38 2.1-1.07 2.85-.7.78-1.85 1.37-2.97 1.28-.06-1.04.41-2.12 1.08-2.83C14.08 1.5 15.32.95 16.36 1zM20.5 17.2c-.55 1.27-.82 1.84-1.53 2.96-.99 1.57-2.39 3.53-4.12 3.54-1.54.01-1.93-1-4.02-.99-2.09.01-2.52 1.01-4.06.99-1.73-.02-3.05-1.78-4.04-3.35C-.06 16.1-.36 11.04 1.43 8.34c1.07-1.6 2.76-2.54 4.35-2.54 1.62 0 2.64 1.04 3.98 1.04 1.3 0 2.09-1.04 3.97-1.04 1.42 0 2.92.78 3.99 2.12-3.5 1.92-2.93 6.92.78 8.28z"/></svg>
               <span><small>Download on the</small>App Store</span>
@@ -58,43 +76,63 @@
               <span><small>Get it on</small>Google Play</span>
             </a>
           </div>
-          <p class="hero__note">Free to download · iOS &amp; Android</p>
+          <p class="hero__note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Free to download · iOS &amp; Android
+          </p>
         </div>
 
-        <!-- Phone mockup -->
-        <div class="hero__device" aria-hidden="true">
+        <!-- Phone mockup (mirrors the real Discover screen) -->
+        <div class="device-wrap" aria-hidden="true">
           <div class="phone">
             <div class="phone__notch"></div>
-            <div class="phone__screen">
+            <div class="screen">
+              <div class="screen__top">
+                <span class="screen__title">Discover</span>
+                <span class="dots"><span></span><span></span><span></span></span>
+              </div>
+
               <div class="deck">
-                <div class="deck__card deck__card--back"></div>
-                <div class="deck__card deck__card--mid"></div>
-                <div class="card">
-                  <div class="card__img">
-                    <svg viewBox="0 0 200 110" class="card__car" aria-hidden="true">
-                      <path d="M18 78 q4-26 22-30 l20-3 q14-12 38-12 24 0 38 12 l20 4 q16 4 20 28 l2 8 -2 6 H16 l-2-6z" fill="#2a2a2a"/>
-                      <path d="M52 46 q12-9 30-9 18 0 30 9 l5 16 H47z" fill="#0f0f0f"/>
-                      <circle cx="58" cy="84" r="14" fill="#0a0a0a"/><circle cx="58" cy="84" r="6" fill="#3a3a3a"/>
-                      <circle cx="142" cy="84" r="14" fill="#0a0a0a"/><circle cx="142" cy="84" r="6" fill="#3a3a3a"/>
+                <div class="deck__behind"></div>
+                <div class="car-card">
+                  <div class="car-card__img">
+                    <span class="car-badge">LIKE</span>
+                    <span class="pill-loc">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      München · 24 km
+                    </span>
+                    <svg class="car-art" viewBox="0 0 200 104" aria-hidden="true">
+                      <path d="M14 80 q5-27 24-31 l20-3 q15-13 42-13 27 0 42 13 l20 4 q17 4 22 30 H14z" fill="currentColor" opacity="0.16"/>
+                      <path d="M50 48 q14-10 35-10 21 0 35 10 l6 17 H44z" fill="currentColor" opacity="0.10"/>
+                      <circle cx="60" cy="82" r="15" fill="currentColor" opacity="0.85"/><circle cx="60" cy="82" r="6" fill="var(--image-bg)"/>
+                      <circle cx="146" cy="82" r="15" fill="currentColor" opacity="0.85"/><circle cx="146" cy="82" r="6" fill="var(--image-bg)"/>
                     </svg>
-                    <span class="badge badge--like">LIKE</span>
                   </div>
-                  <div class="card__body">
-                    <div class="card__row">
-                      <strong>BMW M340i</strong>
-                      <span class="card__price">€42,950</span>
+                  <div class="car-card__info">
+                    <div class="car-card__row">
+                      <strong>BMW M340i xDrive</strong>
+                      <span class="car-card__price">€42,950</span>
                     </div>
-                    <div class="card__meta">2022 · 28,400 km · 374 hp · Petrol</div>
-                    <div class="card__tags">
-                      <span>xDrive</span><span>Pano roof</span><span>Carbon</span>
+                    <div class="car-card__stats">2022 · 28,400 km</div>
+                    <div class="car-card__chips">
+                      <span>Petrol</span><span>Automatic</span><span>374 hp</span><span>Sedan</span>
+                    </div>
+                    <div class="meter">
+                      <div class="meter__track">
+                        <i style="background:#22c55e"></i><i style="background:#86efac"></i><i style="background:var(--text-faint)"></i><i style="background:#f97316"></i><i style="background:#ef4444"></i>
+                        <span class="meter__dot" style="left:10%;background:#4ade80"></span>
+                      </div>
+                      <div class="meter__label"><b style="color:#4ade80">Great price</b><span>· €2,300 below avg</span></div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="deck__actions">
-                <button class="round round--no" aria-label="Dislike">✕</button>
-                <button class="round round--info" aria-label="Details">↑</button>
-                <button class="round round--yes" aria-label="Like">♥</button>
+
+              <div class="tabbar">
+                <span class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></span>
               </div>
             </div>
           </div>
@@ -102,13 +140,13 @@
       </div>
     </section>
 
-    <!-- ===== Stats strip ===== -->
-    <section class="stats">
-      <div class="container stats__grid">
-        <div><span class="stats__num">10k+</span><span class="stats__label">Live listings</span></div>
-        <div><span class="stats__num">1 swipe</span><span class="stats__label">To save a car</span></div>
-        <div><span class="stats__num">Instant</span><span class="stats__label">Price-drop alerts</span></div>
-        <div><span class="stats__num">Free</span><span class="stats__label">To get started</span></div>
+    <!-- ===== Brand strip ===== -->
+    <section class="marquee">
+      <div class="container marquee__inner">
+        <span class="marquee__label">Listings from every major make —</span>
+        <div class="marquee__brands">
+          <span>BMW</span><span>Audi</span><span>Mercedes</span><span>Volkswagen</span><span>Porsche</span><span>Tesla</span><span>Toyota</span><span>Volvo</span>
+        </div>
       </div>
     </section>
 
@@ -117,50 +155,99 @@
       <div class="container">
         <div class="section__head">
           <span class="eyebrow">Features</span>
-          <h2>Everything you need to find <span class="accent">the one</span></h2>
-          <p>No endless filters. No cluttered listings. Just a feed built for the way you actually shop for a car.</p>
+          <h2>Built for the way you actually shop</h2>
+          <p>No endless forms or cluttered result pages — just one card at a time, packed with the details that matter.</p>
         </div>
         <div class="features">
           <article class="feature">
-            <div class="feature__icon">🔥</div>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
             <h3>Swipe to discover</h3>
-            <p>Right to like, left to pass. A fast, addictive feed that learns what you're into and surfaces better matches.</p>
+            <p>Swipe right to save, left to pass, up for the full spec sheet. A fast feed that surfaces cars worth your time.</p>
           </article>
           <article class="feature">
-            <div class="feature__icon">🅿️</div>
-            <h3>Your Garage</h3>
-            <p>Every car you like lands in your personal Garage, ready to revisit, compare, and share whenever you want.</p>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+            <h3>Your liked list</h3>
+            <p>Every car you like is saved to your personal list — ready to revisit, compare, and track over time.</p>
           </article>
           <article class="feature">
-            <div class="feature__icon">📉</div>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 5-7 4 5"/><path d="M3 21h18"/></svg></div>
+            <h3>Instant price check</h3>
+            <p>Each listing shows a market-price meter so you can tell a great deal from an overpriced one at a glance.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9z"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
             <h3>Price-drop alerts</h3>
-            <p>We watch your saved cars around the clock and push you a notification the second the price drops.</p>
+            <p>We watch your saved cars around the clock and push you a notification the second a price drops.</p>
           </article>
           <article class="feature">
-            <div class="feature__icon">📋</div>
-            <h3>Full spec sheets</h3>
-            <p>Swipe up on any card for the complete breakdown — specs, equipment, history, and a link to the original listing.</p>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <h3>Cars near you</h3>
+            <p>See how far each car is and filter the feed by distance, so you only see rides worth the drive.</p>
           </article>
           <article class="feature">
-            <div class="feature__icon">📍</div>
-            <h3>Near you</h3>
-            <p>See how far each car is from you and filter the feed by distance so you only see rides worth the drive.</p>
-          </article>
-          <article class="feature">
-            <div class="feature__icon">🚗</div>
-            <h3>List your own car</h3>
-            <p>Selling? Post your car in minutes and put it in front of buyers who are actively swiping for their next ride.</p>
+            <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></div>
+            <h3>Sell your own car</h3>
+            <p>List your car in minutes with photos and specs, and put it in front of buyers who are actively swiping.</p>
           </article>
         </div>
       </div>
     </section>
 
+    <!-- ===== Smart pricing showcase ===== -->
+    <section class="section section--alt" id="pricing-meter">
+      <div class="container showcase">
+        <div class="showcase__copy">
+          <span class="eyebrow">Smart pricing</span>
+          <h2>Never overpay for a car again</h2>
+          <p>AutoSwiper compares every listing against real market data for the same make, model, year and mileage — then shows you exactly where the price lands.</p>
+          <ul class="checklist">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <div><b>A clear five-point meter</b><span>From "Great price" to "Overpriced" — colour-coded so you know in a second.</span></div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <div><b>Real euro difference</b><span>See how far above or below the average each car is priced.</span></div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              <div><b>Full spec sheets</b><span>Swipe up for the complete breakdown and a link to the original listing.</span></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="demo-card">
+          <div class="demo-card__row">
+            <strong>Audi RS3 Sportback</strong>
+            <span class="price">€38,400</span>
+          </div>
+          <div class="demo-card__stats">2021 · 41,200 km · 400 hp</div>
+          <div class="meter">
+            <div class="meter__track">
+              <i style="background:#22c55e"></i><i style="background:#86efac"></i><i style="background:var(--text-faint)"></i><i style="background:#f97316"></i><i style="background:#ef4444"></i>
+              <span class="meter__dot" style="left:30%;background:#86efac"></span>
+            </div>
+            <div class="meter__label"><b style="color:#86efac">Good price</b><span>· €1,650 below average</span></div>
+          </div>
+          <div class="keynums">
+            <div><b>€38,400</b><small>Price</small></div>
+            <i></i>
+            <div><b>41,200</b><small>km</small></div>
+            <i></i>
+            <div><b>2021</b><small>Year</small></div>
+            <i></i>
+            <div><b>400</b><small>HP</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== How it works ===== -->
-    <section class="section section--alt" id="how">
+    <section class="section" id="how">
       <div class="container">
         <div class="section__head">
           <span class="eyebrow">How it works</span>
-          <h2>Three swipes from your next car</h2>
+          <h2>Three steps to your next car</h2>
         </div>
         <div class="steps">
           <div class="step">
@@ -171,23 +258,23 @@
           <div class="step">
             <span class="step__num">2</span>
             <h3>Save your favourites</h3>
-            <p>Like the ones that catch your eye — they're saved straight to your Garage.</p>
+            <p>Like the cars that catch your eye — they're saved straight to your liked list.</p>
           </div>
           <div class="step">
             <span class="step__num">3</span>
             <h3>Pounce on the deal</h3>
-            <p>Get alerted on price drops, then tap through to the seller and make the call.</p>
+            <p>Get alerted on price drops, then tap through to the seller and make your move.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== CTA banner ===== -->
+    <!-- ===== CTA ===== -->
     <section class="cta">
-      <div class="container cta__inner">
-        <h2>Ready to find your next ride?</h2>
-        <p>Download AutoSwipe and start swiping today — it's free.</p>
-        <div class="hero__cta">
+      <div class="container">
+        <h2>Your next car is a swipe away</h2>
+        <p>Download AutoSwiper and start discovering today — it's free.</p>
+        <div class="badges">
           <a href="#" class="store-badge" aria-label="Download on the App Store">
             <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M16.36 1c.05 1.06-.38 2.1-1.07 2.85-.7.78-1.85 1.37-2.97 1.28-.06-1.04.41-2.12 1.08-2.83C14.08 1.5 15.32.95 16.36 1zM20.5 17.2c-.55 1.27-.82 1.84-1.53 2.96-.99 1.57-2.39 3.53-4.12 3.54-1.54.01-1.93-1-4.02-.99-2.09.01-2.52 1.01-4.06.99-1.73-.02-3.05-1.78-4.04-3.35C-.06 16.1-.36 11.04 1.43 8.34c1.07-1.6 2.76-2.54 4.35-2.54 1.62 0 2.64 1.04 3.98 1.04 1.3 0 2.09-1.04 3.97-1.04 1.42 0 2.92.78 3.99 2.12-3.5 1.92-2.93 6.92.78 8.28z"/></svg>
             <span><small>Download on the</small>App Store</span>
@@ -201,7 +288,7 @@
     </section>
 
     <!-- ===== FAQ ===== -->
-    <section class="section" id="faq">
+    <section class="section section--alt" id="faq">
       <div class="container container--narrow">
         <div class="section__head">
           <span class="eyebrow">FAQ</span>
@@ -209,24 +296,28 @@
         </div>
         <div class="faq">
           <details class="faq__item">
-            <summary>Is AutoSwipe free?</summary>
-            <p>Yes. Downloading the app, swiping, and saving cars to your Garage is completely free. Optional Pro features may be offered in-app.</p>
+            <summary>Is AutoSwiper free?</summary>
+            <p>Yes. Downloading the app, swiping, saving cars and getting price-drop alerts is free. An optional Pro subscription unlocks extra features, and the free version is supported by occasional ads.</p>
           </details>
           <details class="faq__item">
             <summary>Where do the listings come from?</summary>
-            <p>AutoSwipe aggregates public listings from third-party automotive platforms and from sellers who list directly in the app. We don't own or sell the vehicles — every deal happens between you and the seller.</p>
+            <p>AutoSwiper aggregates public listings from third-party automotive platforms and from sellers who list directly in the app. We don't own, sell, or inspect the vehicles — every deal happens directly between you and the seller.</p>
+          </details>
+          <details class="faq__item">
+            <summary>How does the price meter work?</summary>
+            <p>For each car we estimate a fair market value based on the make, model, year and mileage, then show where the asking price sits — from "Great price" to "Overpriced" — along with the euro difference from the average.</p>
           </details>
           <details class="faq__item">
             <summary>How do price-drop alerts work?</summary>
-            <p>We keep an eye on the cars in your Garage. When a listing's price drops, you get an instant push notification so you can act before someone else does.</p>
+            <p>When you like a car it's added to your list and we keep an eye on it. If the price drops, you get an instant push notification so you can act before someone else does.</p>
           </details>
           <details class="faq__item">
             <summary>Can I sell my own car?</summary>
-            <p>Absolutely. You can create a listing in minutes and put it in front of buyers who are actively swiping.</p>
+            <p>Absolutely. You can create a listing in minutes with photos and specs and put it in front of buyers who are actively swiping.</p>
           </details>
           <details class="faq__item">
             <summary>Which platforms are supported?</summary>
-            <p>AutoSwipe is available for both iOS and Android.</p>
+            <p>AutoSwiper is available for both iOS and Android.</p>
           </details>
         </div>
       </div>
@@ -238,22 +329,33 @@
     <div class="container footer__inner">
       <div class="footer__brand">
         <a class="brand" href="#top">
-          <img class="brand__logo" src="assets/icon.png" alt="AutoSwipe logo" />
-          <span class="brand__name">AutoSwipe</span>
+          <img class="brand__logo" src="assets/icon.png" alt="AutoSwiper logo" />
+          <span class="brand__name">AutoSwiper</span>
         </a>
-        <p>Tinder for cars. Swipe. Match. Drive.</p>
+        <p>The swipe-to-discover car marketplace. Find your next car with a swipe.</p>
       </div>
-      <nav class="footer__links">
-        <a href="#features">Features</a>
-        <a href="#how">How it works</a>
-        <a href="#faq">FAQ</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="mailto:support@autoswipe.app">Contact</a>
-      </nav>
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="#pricing-meter">Smart pricing</a>
+          <a href="#how">How it works</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer__col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <a href="mailto:hello@useautoswiper.com">hello@useautoswiper.com</a>
+        </div>
+      </div>
     </div>
     <div class="container footer__bottom">
-      <span>© <span id="year"></span> AutoSwipe. All rights reserved.</span>
+      <span>© <span id="year"></span> AutoSwiper. All rights reserved.</span>
+      <span>Made for car people.</span>
     </div>
   </footer>
 

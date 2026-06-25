@@ -1,24 +1,29 @@
-# AutoSwipe — Marketing Website
+# AutoSwiper — Marketing Website
 
-A static landing page for the AutoSwipe app. Plain HTML/CSS/JS — **no build step**,
+The static marketing site for the AutoSwiper app. Plain HTML/CSS/JS — **no build step** —
 so it can be hosted anywhere (GitHub Pages, Netlify, Vercel, Cloudflare Pages…).
+
+The design mirrors the app itself: a monochrome palette with a built-in light/dark
+theme that matches the app's own theming, the real swipe-card layout, and the
+in-app market-price meter.
 
 ## Files
 
 ```
 website/
-├── index.html        ← Landing page
-├── privacy.html      ← Privacy Policy (required for app store listings)
-├── terms.html        ← Terms of Service
+├── index.html        ← Landing page (light/dark, app-accurate UI)
+├── privacy.html      ← Privacy Policy (tailored to the app)
+├── terms.html        ← Terms of Service (tailored to the app)
+├── CNAME             ← Custom domain (www.useautoswiper.com)
 └── assets/
-    ├── styles.css     ← All styling (matches the app's dark + coral-red theme)
-    ├── main.js        ← Tiny enhancements (sticky nav, year)
-    └── icon.png       ← Logo / favicon (copied from the app icon)
+    ├── styles.css     ← All styling + theme tokens
+    ├── main.js        ← Theme toggle (persisted) + small enhancements
+    └── icon.png       ← Logo / favicon (the app icon)
 ```
 
 ## Preview locally
 
-Just open `index.html` in a browser, or serve the folder:
+Open `index.html` directly, or serve the folder:
 
 ```bash
 # from inside the website/ folder
@@ -28,19 +33,25 @@ python -m http.server 8000
 
 ## Deploy with GitHub Pages
 
-1. Push this repo to GitHub.
-2. Go to **Settings → Pages**.
-3. Under **Build and deployment → Source**, pick **Deploy from a branch**.
-4. Choose your branch (e.g. `main`) and set the folder to **`/website`**
-   (or move the contents to `/docs` / repo root if you prefer those options).
-5. Save. Your site goes live at `https://<username>.github.io/<repo>/` in a minute.
+This repo is already wired to `github.com/Jeroen-HUI/autoswiper-website`.
 
-> Tip: For a custom domain (e.g. `autoswipe.app`), add it under
-> **Settings → Pages → Custom domain** and create a `CNAME` DNS record at your registrar.
+1. **Settings → Pages → Source: Deploy from a branch**, pick `main`, folder `/ (root)`.
+2. The custom domain `www.useautoswiper.com` is set via the `CNAME` file. Point your
+   DNS at GitHub Pages, then enable **Enforce HTTPS** once it verifies.
+
+Publishing an update is just:
+
+```bash
+git add .
+git commit -m "Update website"
+git push
+```
 
 ## Things to update before launch
 
-- **Store links:** the App Store / Google Play buttons currently point to `#`.
-  Replace the `href="#"` values in `index.html` once your listings are live.
-- **Contact email:** `support@autoswipe.app` is used in the footer and legal pages.
-- **Stats:** the "10k+ listings" strip uses placeholder numbers — tweak to taste.
+- **Store links:** the App Store / Google Play buttons point to `#`. Replace the
+  `href="#"` values in `index.html` once your store listings are live.
+- **Governing law:** `terms.html` currently names the Netherlands — confirm this
+  matches your registered entity / jurisdiction.
+- **Brand name:** the site uses "AutoSwiper" (matching the domain). The app's
+  internal name is "AutoSwipe" — change if you want them to match.
