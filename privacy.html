@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — AutoSwipe</title>
+  <meta name="description" content="How AutoSwipe collects, uses, and protects your personal data." />
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="nav is-scrolled">
+    <div class="container nav__inner">
+      <a class="brand" href="index.html">
+        <img class="brand__logo" src="assets/icon.png" alt="AutoSwipe logo" />
+        <span class="brand__name">AutoSwipe</span>
+      </a>
+      <a href="index.html" class="btn btn--sm btn--primary">Back to home</a>
+    </div>
+  </header>
+
+  <main class="legal">
+    <div class="container container--narrow">
+      <a class="legal__back" href="index.html">&larr; Back to home</a>
+      <h1>Privacy Policy</h1>
+      <p class="legal__updated">Last updated: June 2026</p>
+
+      <div class="legal__content">
+        <p>We respect your privacy and are committed to protecting the personal data you share with us. This Privacy Policy explains how we collect, use, and safeguard your information when you use AutoSwipe.</p>
+
+        <h2>1. Information We Collect</h2>
+        <p><strong>Account Information:</strong> When you sign up, we collect your email address and any basic profile information provided by single sign-on providers (such as Google).</p>
+        <p><strong>Interaction Data:</strong> We collect and store data regarding your in-app actions, specifically your swipes (likes and dislikes) and saved vehicles ("Liked"). This is strictly required to provide the core discovery experience.</p>
+        <p><strong>Device and Usage Information:</strong> We automatically collect technical metadata, including your device type, operating system version, anonymised IP address, and app performance analytics.</p>
+        <p><strong>Location Data:</strong> If permitted by your device settings, we may process location data to filter vehicle listings within a specific distance from you.</p>
+        <p><strong>Push Token:</strong> If you grant notification permission, we store your device's push token to deliver price-drop alerts.</p>
+
+        <h2>2. How We Use Your Information</h2>
+        <p>We use the collected data exclusively to:</p>
+        <p>• Provide, personalise, and optimise your swiping and car-matching experience.<br />
+        • Send automated push notifications when a vehicle in your Liked list experiences a detected price drop.<br />
+        • Monitor app performance and troubleshoot technical bugs.</p>
+
+        <h2>3. Data Sharing and Third Parties</h2>
+        <p>We do not sell your personal data to advertisers or third parties.</p>
+        <p><strong>Backend Infrastructure:</strong> Your account and interaction data are stored securely using Supabase (PostgreSQL).</p>
+        <p><strong>External Redirection:</strong> When you tap to view an original listing, you interact directly with that third-party platform, which operates under its own privacy policy.</p>
+
+        <h2>4. Your Rights (GDPR)</h2>
+        <p>If you are accessing the App from the European Union or United Kingdom, you have the following rights regarding your personal data:</p>
+        <p>• The right to access the personal data we hold about you.<br />
+        • The right to request correction of inaccurate data.<br />
+        • The right to request full deletion of your account and activity history. You can initiate account deletion at any time through the App settings.</p>
+
+        <h2>5. Security</h2>
+        <p>We implement industry-standard electronic security measures to safeguard your data. However, no transmission of data over the internet or mobile network can be guaranteed as 100% secure.</p>
+
+        <h2>6. Contact</h2>
+        <p>If you have questions or feedback regarding this Privacy Policy or your data, please contact us at: <a href="mailto:support@autoswipe.app">support@autoswipe.app</a></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__bottom" style="border:0;">
+      <span>© <span id="year"></span> AutoSwipe. All rights reserved.</span>
+    </div>
+  </footer>
+  <script src="assets/main.js"></script>
+</body>
+</html>
