@@ -126,51 +126,114 @@ svg { display: block; }
 .badges--soon { margin-top: 4px; }
 
 /* ===================== Waitlist ===================== */
-.sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+.waitlist {
+  margin: 28px 0 22px;
+  max-width: 520px;
 }
-.waitlist { margin: 24px 0 20px; max-width: 480px; }
 .waitlist--centered { margin-left: auto; margin-right: auto; }
-.waitlist__row {
-  display: flex; gap: 10px; flex-wrap: wrap;
-}
-.waitlist__input {
-  flex: 1; min-width: 200px;
-  padding: 12px 16px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
+
+.waitlist__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 6px 6px 20px;
   background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.waitlist__bar:focus-within {
+  border-color: var(--text-muted);
+}
+
+.waitlist__input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px 0;
+  border: none;
+  background: transparent;
   color: var(--text);
-  font: inherit; font-size: 0.95rem;
-  transition: border-color 0.2s ease;
+  font: inherit;
+  font-size: 0.95rem;
 }
 .waitlist__input::placeholder { color: var(--text-muted); }
-.waitlist__input:focus { outline: none; border-color: var(--text-muted); }
-.waitlist__submit { flex-shrink: 0; padding: 12px 22px; border: none; cursor: pointer; }
+.waitlist__input:focus { outline: none; }
+
+.waitlist__submit {
+  flex-shrink: 0;
+  padding: 12px 22px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
 .waitlist__submit:disabled { opacity: 0.6; cursor: wait; }
-.waitlist__platforms {
-  display: flex; flex-wrap: wrap; gap: 8px;
-  margin-top: 12px; padding: 0; border: none;
+
+.waitlist__meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 14px;
 }
+.waitlist__meta-label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.waitlist__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .waitlist__pill {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 6px 12px; border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text-secondary);
-  font-size: 0.82rem; font-weight: 500;
-  cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease;
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
 }
-.waitlist__pill:has(input:checked) {
+.waitlist__pill input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.waitlist__pill span {
+  display: inline-block;
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.waitlist__pill:hover span {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+.waitlist__pill:has(input:checked) span,
+.waitlist__pill input:focus-visible + span {
   border-color: var(--text);
   color: var(--text);
   background: var(--surface-raised);
 }
-.waitlist__pill input { accent-color: var(--text); }
-.waitlist__hp { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
+
+.waitlist__hp { display: none !important; }
+
 .waitlist__status {
-  margin-top: 12px; font-size: 0.9rem; line-height: 1.45;
+  margin-top: 14px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  min-height: 1.25em;
 }
 .waitlist__status--success { color: var(--success); }
 .waitlist__status--error { color: var(--danger); }
@@ -518,6 +581,7 @@ svg { display: block; }
   .hero__copy { order: 1; }
   .device-wrap { order: 2; }
   .hero__sub { margin-left: auto; margin-right: auto; }
+  .hero .waitlist { margin-left: auto; margin-right: auto; }
   .badges, .hero__note { justify-content: center; }
   .showcase { grid-template-columns: 1fr; gap: 36px; }
   .features { grid-template-columns: repeat(2, 1fr); }
@@ -530,7 +594,15 @@ svg { display: block; }
   .footer__cols { gap: 40px; }
   .toc ol { columns: 1; }
   .section { padding: 70px 0; }
-  .waitlist__row { flex-direction: column; }
+  .waitlist__bar {
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: var(--radius-lg);
+    padding: 12px;
+    gap: 10px;
+  }
+  .waitlist__input { padding: 10px 8px; text-align: center; }
   .waitlist__submit { width: 100%; }
+  .waitlist__meta { justify-content: center; }
   .hero__logo { width: 92px; height: 92px; }
 }

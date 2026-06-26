@@ -72,17 +72,21 @@
           </p>
 
           <form class="waitlist" data-waitlist-form id="waitlist">
-            <div class="waitlist__row">
-              <input class="waitlist__input" type="email" name="email" placeholder="Enter your email" required autocomplete="email" aria-label="Email address" />
+            <div class="waitlist__bar">
+              <input class="waitlist__input" type="email" name="email" placeholder="you@email.com" required autocomplete="email" aria-label="Email address" />
               <button class="btn btn--primary waitlist__submit" type="submit">Join waitlist</button>
             </div>
-            <fieldset class="waitlist__platforms">
-              <legend class="sr-only">Preferred platform</legend>
-              <label class="waitlist__pill"><input type="radio" name="platform" value="both" checked /> Both</label>
-              <label class="waitlist__pill"><input type="radio" name="platform" value="ios" /> iOS</label>
-              <label class="waitlist__pill"><input type="radio" name="platform" value="android" /> Android</label>
-            </fieldset>
-            <input class="waitlist__hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div class="waitlist__meta" role="group" aria-label="Preferred platform">
+              <span class="waitlist__meta-label">Notify me for</span>
+              <div class="waitlist__pills">
+                <label class="waitlist__pill"><input type="radio" name="platform" value="both" checked /><span>Both</span></label>
+                <label class="waitlist__pill"><input type="radio" name="platform" value="ios" /><span>iOS</span></label>
+                <label class="waitlist__pill"><input type="radio" name="platform" value="android" /><span>Android</span></label>
+              </div>
+            </div>
+            <div class="waitlist__hp" hidden>
+              <input type="text" name="company" tabindex="-1" autocomplete="off" />
+            </div>
             <p class="waitlist__status" data-waitlist-status hidden></p>
           </form>
 
@@ -296,17 +300,21 @@
         <h2>Be first to swipe</h2>
         <p>AutoSwiper is launching soon on iOS and Android. Join the waitlist and we'll notify you on launch day.</p>
         <form class="waitlist waitlist--centered" data-waitlist-form>
-          <div class="waitlist__row">
-            <input class="waitlist__input" type="email" name="email" placeholder="Enter your email" required autocomplete="email" aria-label="Email address" />
+          <div class="waitlist__bar">
+            <input class="waitlist__input" type="email" name="email" placeholder="you@email.com" required autocomplete="email" aria-label="Email address" />
             <button class="btn btn--primary waitlist__submit" type="submit">Join waitlist</button>
           </div>
-          <fieldset class="waitlist__platforms">
-            <legend class="sr-only">Preferred platform</legend>
-            <label class="waitlist__pill"><input type="radio" name="platform" value="both" checked /> Both</label>
-            <label class="waitlist__pill"><input type="radio" name="platform" value="ios" /> iOS</label>
-            <label class="waitlist__pill"><input type="radio" name="platform" value="android" /> Android</label>
-          </fieldset>
-          <input class="waitlist__hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <div class="waitlist__meta" role="group" aria-label="Preferred platform">
+            <span class="waitlist__meta-label">Notify me for</span>
+            <div class="waitlist__pills">
+              <label class="waitlist__pill"><input type="radio" name="platform" value="both" checked /><span>Both</span></label>
+              <label class="waitlist__pill"><input type="radio" name="platform" value="ios" /><span>iOS</span></label>
+              <label class="waitlist__pill"><input type="radio" name="platform" value="android" /><span>Android</span></label>
+            </div>
+          </div>
+          <div class="waitlist__hp" hidden>
+            <input type="text" name="company" tabindex="-1" autocomplete="off" />
+          </div>
           <p class="waitlist__status" data-waitlist-status hidden></p>
         </form>
         <div class="badges badges--soon">
