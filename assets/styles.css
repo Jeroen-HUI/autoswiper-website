@@ -240,17 +240,15 @@ svg { display: block; }
 .waitlist__status--loading { color: var(--text-muted); }
 
 .hero__logo {
-  width: 108px; height: 108px;
-  border-radius: 22px;
+  height: 108px;
+  width: auto;
   margin-bottom: 18px;
-  box-shadow: var(--shadow);
 }
 .cta__logo {
-  width: 88px; height: 88px;
-  border-radius: 18px;
+  height: 88px;
+  width: auto;
   margin: 0 auto 20px;
   display: block;
-  box-shadow: var(--shadow);
 }
 
 /* ===================== Nav ===================== */
@@ -267,8 +265,8 @@ svg { display: block; }
 .nav.is-scrolled { border-bottom-color: var(--border-subtle); }
 .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 66px; gap: 16px; }
 .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -0.02em; }
-.brand__logo { width: 30px; height: 30px; border-radius: 8px; }
-.brand__logo--full { width: auto; height: 38px; border-radius: 10px; }
+.brand__logo { width: auto; height: 38px; }
+.brand__logo--full { width: auto; height: 38px; }
 .brand__name { font-size: 1.12rem; }
 .nav__links { display: flex; gap: 28px; margin-left: auto; }
 .nav__links a { font-size: 0.94rem; color: var(--text-secondary); font-weight: 500; transition: color 0.2s ease; }
@@ -604,5 +602,5 @@ svg { display: block; }
   .waitlist__input { padding: 10px 8px; text-align: center; }
   .waitlist__submit { width: 100%; }
   .waitlist__meta { justify-content: center; }
-  .hero__logo { width: 92px; height: 92px; }
+  .hero__logo { height: 92px; width: auto; }
 }
