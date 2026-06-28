@@ -12,12 +12,19 @@ in-app market-price meter.
 ```
 website/
 ├── index.html        ← Landing page (light/dark, app-accurate UI)
+├── invite/
+│   └── index.html    ← Invite landing (opens app / store fallback)
+├── .well-known/
+│   ├── assetlinks.json                  ← Android App Links verification
+│   └── apple-app-site-association       ← iOS Universal Links (update TEAMID)
 ├── privacy.html      ← Privacy Policy (tailored to the app)
 ├── terms.html        ← Terms of Service (tailored to the app)
-├── CNAME             ← Custom domain (www.useautoswiper.com)
+├── CNAME             ← Custom domain (useautoswiper.com)
 └── assets/
     ├── styles.css     ← All styling + theme tokens
     ├── main.js        ← Theme toggle (persisted) + small enhancements
+    ├── config.js      ← Supabase + store URLs
+    ├── invite.js      ← Invite page logic
     └── icon.png       ← Logo / favicon (the app icon)
 ```
 
@@ -37,7 +44,7 @@ This repo is already wired to `github.com/Jeroen-HUI/autoswiper-website`.
 
 1. **Settings → Pages → Source: Deploy from a branch**, pick `main`, folder `/ (root)`.
 2. The custom domain `www.useautoswiper.com` is set via the `CNAME` file. Point your
-   DNS at GitHub Pages, then enable **Enforce HTTPS** once it verifies.
+   DNS at GitHub Pages (www → `jeroen-hui.github.io`, apex → GitHub A records), then enable **Enforce HTTPS** once it verifies.
 
 Publishing an update is just:
 
@@ -49,8 +56,9 @@ git push
 
 ## Things to update before launch
 
-- **Store links:** the App Store / Google Play buttons point to `#`. Replace the
-  `href="#"` values in `index.html` once your store listings are live.
+- **Store links:** update `assets/config.js` (`playStoreUrl`, `appStoreUrl`) when listings go live.
+- **iOS Universal Links:** replace `TEAMID` in `.well-known/apple-app-site-association` with your Apple Team ID (find it in [Apple Developer](https://developer.apple.com/account) → Membership, or Expo credentials after iOS setup).
+- **Invite links:** shared from the app as `https://www.useautoswiper.com/invite?code=XXXX`. Deploy this site so `/invite` and `.well-known/*` are live.
 - **Governing law:** `terms.html` currently names the Netherlands — confirm this
   matches your registered entity / jurisdiction.
 - **Brand name:** the site uses "AutoSwiper" (matching the domain). The app's

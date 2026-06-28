@@ -1,0 +1,19 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["L9U4UN472Q.com.autoswipe"],
+        "components": [
+          {
+            "/": "/invite",
+            "?": { "code": "?*" }
+          },
+          {
+            "/": "/invite/*"
+          }
+        ]
+      }
+    ]
+  }
+}

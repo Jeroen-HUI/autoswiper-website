@@ -604,3 +604,99 @@ svg { display: block; }
   .waitlist__meta { justify-content: center; }
   .hero__logo { height: 92px; width: auto; }
 }
+
+/* ---- Invite landing (/invite) ---- */
+.invite-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+}
+
+.invite-shell {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.invite-brand img {
+  display: block;
+  height: 72px;
+  width: auto;
+}
+
+.invite-card {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 32px 28px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.invite-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+
+.invite-copy {
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+
+.invite-copy--small {
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+}
+
+.invite-code-box {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.invite-code-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.invite-code-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.invite-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.invite-fallback {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.invite-stores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
