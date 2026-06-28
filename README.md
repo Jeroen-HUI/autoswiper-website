@@ -19,7 +19,7 @@ website/
 │   └── apple-app-site-association       ← iOS Universal Links (update TEAMID)
 ├── privacy.html      ← Privacy Policy (tailored to the app)
 ├── terms.html        ← Terms of Service (tailored to the app)
-├── CNAME             ← Custom domain (useautoswiper.com)
+├── CNAME             ← Custom domain (www.useautoswiper.com)
 └── assets/
     ├── styles.css     ← All styling + theme tokens
     ├── main.js        ← Theme toggle (persisted) + small enhancements
@@ -45,6 +45,40 @@ This repo is already wired to `github.com/Jeroen-HUI/autoswiper-website`.
 1. **Settings → Pages → Source: Deploy from a branch**, pick `main`, folder `/ (root)`.
 2. The custom domain `www.useautoswiper.com` is set via the `CNAME` file. Point your
    DNS at GitHub Pages (www → `jeroen-hui.github.io`, apex → GitHub A records), then enable **Enforce HTTPS** once it verifies.
+
+### HTTPS not working? (Certificate Request Error)
+
+If GitHub Pages shows **TLS certificate provisioning failed** or browsers get a certificate
+error for `*.github.io` instead of your domain, the website files are usually fine — the
+blocker is almost always **broken DNSSEC** on the domain.
+
+**Verify:** open [Google DNS lookup for DS record](https://dns.google/query?name=useautoswiper.com&type=DS).
+If you see a DS record and `DNSSEC validation failure` for A/CNAME lookups, that's the problem.
+
+**Fix at Namecheap:**
+1. Domain List → **Manage** → **Advanced DNS**
+2. Find **DNSSEC** and turn it **Off** (or delete any DS records)
+3. If DS records still appear in the Google lookup after 24h, open a Namecheap support ticket
+   and ask them to **remove the DS record at the .com registry** — toggling DNSSEC off in
+   the panel does not always delete the registry DS entry.
+
+**Required DNS records (must match GitHub Pages docs):**
+
+| Host | Type  | Value                 |
+|------|-------|-----------------------|
+| `@`  | A     | `185.199.108.153`     |
+| `@`  | A     | `185.199.109.153`     |
+| `@`  | A     | `185.199.110.153`     |
+| `@`  | A     | `185.199.111.153`     |
+| `www`| CNAME | `jeroen-hui.github.io.`|
+
+After DNSSEC is fixed, go to **GitHub → repo Settings → Pages**, remove the custom domain,
+wait one minute, re-add `www.useautoswiper.com`, then wait up to 15 minutes for the cert.
+
+**Current repo config (already correct):**
+- `CNAME` file: `www.useautoswiper.com`
+- `.nojekyll` present (allows `.well-known/` to be served)
+- No mixed-content or HTTPS-breaking settings in the HTML
 
 Publishing an update is just:
 
