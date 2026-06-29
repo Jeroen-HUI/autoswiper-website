@@ -19,6 +19,7 @@ website/
 │   └── apple-app-site-association       ← iOS Universal Links (update TEAMID)
 ├── privacy.html      ← Privacy Policy (tailored to the app)
 ├── terms.html        ← Terms of Service (tailored to the app)
+├── app-ads.txt       ← AdMob app-ads.txt (required for ad verification)
 ├── CNAME             ← Custom domain (www.useautoswiper.com)
 └── assets/
     ├── styles.css     ← All styling + theme tokens
@@ -93,6 +94,7 @@ git push
 - **Store links:** update `assets/config.js` (`playStoreUrl`, `appStoreUrl`) when listings go live.
 - **iOS Universal Links:** replace `TEAMID` in `.well-known/apple-app-site-association` with your Apple Team ID (find it in [Apple Developer](https://developer.apple.com/account) → Membership, or Expo credentials after iOS setup).
 - **Invite links:** shared from the app as `https://www.useautoswiper.com/invite?code=XXXX`. Deploy this site so `/invite` and `.well-known/*` are live.
+- **AdMob `app-ads.txt`:** after deploy, verify `https://www.useautoswiper.com/app-ads.txt` loads in a browser. The domain must match **exactly** what is listed as your developer website in Google Play (and App Store Connect for iOS).
 - **Governing law:** `terms.html` currently names the Netherlands — confirm this
   matches your registered entity / jurisdiction.
 - **Brand name:** the site uses "AutoSwiper" (matching the domain). The app's
