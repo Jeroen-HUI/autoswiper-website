@@ -20,7 +20,7 @@ website/
 ├── privacy.html      ← Privacy Policy (tailored to the app)
 ├── terms.html        ← Terms of Service (tailored to the app)
 ├── app-ads.txt       ← AdMob app-ads.txt (required for ad verification)
-├── CNAME             ← Custom domain (www.useautoswiper.com)
+├── CNAME             ← Custom domain (useautoswiper.com)
 └── assets/
     ├── styles.css     ← All styling + theme tokens
     ├── main.js        ← Theme toggle (persisted) + small enhancements
@@ -44,8 +44,11 @@ python -m http.server 8000
 This repo is already wired to `github.com/Jeroen-HUI/autoswiper-website`.
 
 1. **Settings → Pages → Source: Deploy from a branch**, pick `main`, folder `/ (root)`.
-2. The custom domain `www.useautoswiper.com` is set via the `CNAME` file. Point your
-   DNS at GitHub Pages (www → `jeroen-hui.github.io`, apex → GitHub A records), then enable **Enforce HTTPS** once it verifies.
+2. The custom domain `useautoswiper.com` is set via the `CNAME` file. Point DNS at
+   GitHub Pages per [GitHub's DNS table](https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https#verifying-the-dns-configuration):
+   **apex** → four `A` records on `@`, **www** → `CNAME` to `jeroen-hui.github.io`.
+   In **Settings → Pages**, the custom domain must be **`useautoswiper.com`** (same as the
+   `CNAME` file). GitHub redirects `www` to the apex automatically. Then enable **Enforce HTTPS**.
 
 ### HTTPS not working? (Certificate Request Error)
 
@@ -73,11 +76,15 @@ If you see a DS record and `DNSSEC validation failure` for A/CNAME lookups, that
 | `@`  | A     | `185.199.111.153`     |
 | `www`| CNAME | `jeroen-hui.github.io.`|
 
-After DNSSEC is fixed, go to **GitHub → repo Settings → Pages**, remove the custom domain,
-wait one minute, re-add `www.useautoswiper.com`, then wait up to 15 minutes for the cert.
+After DNS is correct, go to **GitHub → repo Settings → Pages**, remove the custom domain,
+wait one minute, re-add **`useautoswiper.com`** (not `www`), then wait up to 15 minutes for the cert.
 
-**Current repo config (already correct):**
-- `CNAME` file: `www.useautoswiper.com`
+**InvalidARecordError on `www`:** GitHub shows this when `www` uses **A records** instead of a
+**CNAME** to `jeroen-hui.github.io`. Your Namecheap setup (screenshot) is correct — click
+**Check again** after DNS propagates. Do not put A records on the `www` host.
+
+**Current repo config:**
+- `CNAME` file: `useautoswiper.com`
 - `.nojekyll` present (allows `.well-known/` to be served)
 - No mixed-content or HTTPS-breaking settings in the HTML
 
