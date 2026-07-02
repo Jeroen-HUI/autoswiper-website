@@ -44,7 +44,7 @@
       </a>
       <nav class="nav__links">
         <a href="#features">Features</a>
-        <a href="#pricing-meter">Smart pricing</a>
+        <a href="#spec-sheet">Spec details</a>
         <a href="#how">How it works</a>
         <a href="#waitlist">Waitlist</a>
         <a href="#faq">FAQ</a>
@@ -68,9 +68,9 @@
           <span class="eyebrow">Coming soon on iOS &amp; Android</span>
           <h1 class="hero__title">Find your next car with a swipe.</h1>
           <p class="hero__sub">
-            Browse thousands of real listings in a fast, single-card feed. See
-            instantly whether a price is fair, save the cars you love, and get
-            alerted the moment one drops in price.
+            Browse thousands of real listings in a fast, single-card feed. Save
+            the cars you love, dig into full specs, and get alerted the moment
+            one drops in price.
           </p>
 
           <form class="waitlist" data-waitlist-form id="waitlist">
@@ -143,13 +143,6 @@
                     <div class="car-card__chips">
                       <span>Petrol</span><span>Automatic</span><span>374 hp</span><span>Sedan</span>
                     </div>
-                    <div class="meter">
-                      <div class="meter__track">
-                        <i style="background:#22c55e"></i><i style="background:#86efac"></i><i style="background:var(--text-faint)"></i><i style="background:#f97316"></i><i style="background:#ef4444"></i>
-                        <span class="meter__dot" style="left:10%;background:#4ade80"></span>
-                      </div>
-                      <div class="meter__label"><b style="color:#4ade80">Great price</b><span>· €2,300 below avg</span></div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -197,8 +190,8 @@
           </article>
           <article class="feature">
             <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 4 5-7 4 5"/><path d="M3 21h18"/></svg></div>
-            <h3>Instant price check</h3>
-            <p>Each listing shows a market-price meter so you can tell a great deal from an overpriced one at a glance.</p>
+            <h3>Full spec sheets</h3>
+            <p>Swipe up on any card for the complete breakdown — options, power, fuel type, and a link to the original listing.</p>
           </article>
           <article class="feature">
             <div class="feature__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9z"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
@@ -219,25 +212,25 @@
       </div>
     </section>
 
-    <!-- ===== Smart pricing showcase ===== -->
-    <section class="section section--alt" id="pricing-meter">
+    <!-- ===== Spec sheet showcase ===== -->
+    <section class="section section--alt" id="spec-sheet">
       <div class="container showcase">
         <div class="showcase__copy">
-          <span class="eyebrow">Smart pricing</span>
-          <h2>Never overpay for a car again</h2>
-          <p>AutoSwiper compares every listing against real market data for the same make, model, year and mileage — then shows you exactly where the price lands.</p>
+          <span class="eyebrow">Every detail</span>
+          <h2>See the full picture before you swipe right</h2>
+          <p>AutoSwiper pulls in rich listing data from dealers and marketplaces — then lets you open the complete spec sheet with one swipe.</p>
           <ul class="checklist">
             <li>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-              <div><b>A clear five-point meter</b><span>From "Great price" to "Overpriced" — colour-coded so you know in a second.</span></div>
+              <div><b>Key specs at a glance</b><span>Year, mileage, fuel, transmission, and power on every card.</span></div>
             </li>
             <li>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-              <div><b>Real euro difference</b><span>See how far above or below the average each car is priced.</span></div>
+              <div><b>Full breakdown on demand</b><span>Swipe up for options, equipment, and the seller's description.</span></div>
             </li>
             <li>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-              <div><b>Full spec sheets</b><span>Swipe up for the complete breakdown and a link to the original listing.</span></div>
+              <div><b>One tap to the source</b><span>Jump straight to the original listing when you're ready to enquire.</span></div>
             </li>
           </ul>
         </div>
@@ -248,13 +241,6 @@
             <span class="price">€38,400</span>
           </div>
           <div class="demo-card__stats">2021 · 41,200 km · 400 hp</div>
-          <div class="meter">
-            <div class="meter__track">
-              <i style="background:#22c55e"></i><i style="background:#86efac"></i><i style="background:var(--text-faint)"></i><i style="background:#f97316"></i><i style="background:#ef4444"></i>
-              <span class="meter__dot" style="left:30%;background:#86efac"></span>
-            </div>
-            <div class="meter__label"><b style="color:#86efac">Good price</b><span>· €1,650 below average</span></div>
-          </div>
           <div class="keynums">
             <div><b>€38,400</b><small>Price</small></div>
             <i></i>
@@ -353,10 +339,6 @@
             <p>AutoSwiper aggregates public listings from third-party automotive platforms and from sellers who list directly in the app. We don't own, sell, or inspect the vehicles — every deal happens directly between you and the seller.</p>
           </details>
           <details class="faq__item">
-            <summary>How does the price meter work?</summary>
-            <p>For each car we estimate a fair market value based on the make, model, year and mileage, then show where the asking price sits — from "Great price" to "Overpriced" — along with the euro difference from the average.</p>
-          </details>
-          <details class="faq__item">
             <summary>How do price-drop alerts work?</summary>
             <p>When you like a car it's added to your list and we keep an eye on it. If the price drops, you get an instant push notification so you can act before someone else does.</p>
           </details>
@@ -386,7 +368,7 @@
         <div class="footer__col">
           <h4>Product</h4>
           <a href="#features">Features</a>
-          <a href="#pricing-meter">Smart pricing</a>
+          <a href="#spec-sheet">Spec details</a>
           <a href="#how">How it works</a>
           <a href="#waitlist">Waitlist</a>
           <a href="#faq">FAQ</a>

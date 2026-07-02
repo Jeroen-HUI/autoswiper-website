@@ -418,20 +418,6 @@ svg { display: block; }
   background: var(--surface-raised); border: 1px solid var(--border);
 }
 
-/* Valuation meter — mirrors the in-card price meter */
-.meter { margin-top: 12px; }
-.meter__track { display: flex; gap: 0; height: 3px; border-radius: 2px; overflow: visible; position: relative; }
-.meter__track i { flex: 1; height: 3px; opacity: 0.78; }
-.meter__track i:first-child { border-radius: 2px 0 0 2px; }
-.meter__track i:last-child { border-radius: 0 2px 2px 0; }
-.meter__dot {
-  position: absolute; top: 50%; width: 10px; height: 10px; border-radius: 50%;
-  transform: translate(-50%, -50%); border: 2px solid var(--card);
-}
-.meter__label { display: flex; gap: 5px; align-items: baseline; margin-top: 7px; font-size: 0.72rem; }
-.meter__label b { font-weight: 600; }
-.meter__label span { color: var(--text-muted); }
-
 /* Bottom tab bar — mirrors app/(tabs)/_layout.tsx */
 .tabbar {
   display: flex; justify-content: space-around; align-items: center;
@@ -478,7 +464,7 @@ svg { display: block; }
 .feature h3 { font-size: 1.12rem; margin-bottom: 7px; letter-spacing: -0.01em; }
 .feature p { color: var(--text-secondary); font-size: 0.95rem; }
 
-/* ===================== Showcase (smart pricing) ===================== */
+/* ===================== Showcase (spec details) ===================== */
 .showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
 .showcase__copy h2 { font-size: clamp(1.9rem, 3.6vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 16px; }
 .showcase__copy p { color: var(--text-secondary); font-size: 1.06rem; margin-bottom: 24px; }
@@ -500,7 +486,6 @@ svg { display: block; }
 .demo-card__row strong { font-size: 1.2rem; }
 .demo-card__row .price { font-size: 1.3rem; font-weight: 800; }
 .demo-card__stats { color: var(--text-muted); font-size: 0.9rem; margin-top: 4px; margin-bottom: 22px; }
-.demo-card .meter__label { font-size: 0.86rem; }
 .demo-card .keynums {
   display: flex; align-items: center; margin-top: 22px;
   background: var(--surface-raised); border: 1px solid var(--border); border-radius: 12px; padding: 14px;

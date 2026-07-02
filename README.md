@@ -4,8 +4,7 @@ The static marketing site for the AutoSwiper app. Plain HTML/CSS/JS — **no bui
 so it can be hosted anywhere (GitHub Pages, Netlify, Vercel, Cloudflare Pages…).
 
 The design mirrors the app itself: a monochrome palette with a built-in light/dark
-theme that matches the app's own theming, the real swipe-card layout, and the
-in-app market-price meter.
+theme that matches the app's own theming and the real swipe-card layout.
 
 ## Files
 
@@ -101,6 +100,7 @@ git push
 - **Store links:** update `assets/config.js` (`playStoreUrl`, `appStoreUrl`) when listings go live.
 - **iOS Universal Links:** replace `TEAMID` in `.well-known/apple-app-site-association` with your Apple Team ID (find it in [Apple Developer](https://developer.apple.com/account) → Membership, or Expo credentials after iOS setup).
 - **Invite links:** shared from the app as `https://www.useautoswiper.com/invite?code=XXXX`. Deploy this site so `/invite` and `.well-known/*` are live.
+- **Admin analytics:** private dashboard at `/admin/` (not linked from the public site). Sign in with an account on the `app_admins` allowlist in Supabase (`jeroenhuitema2006@gmail.com`, etc.).
 - **AdMob `app-ads.txt`:** after deploy, verify `https://www.useautoswiper.com/app-ads.txt` loads in a browser. The domain must match **exactly** what is listed as your developer website in Google Play (and App Store Connect for iOS).
 - **Governing law:** `terms.html` currently names the Netherlands — confirm this
   matches your registered entity / jurisdiction.
