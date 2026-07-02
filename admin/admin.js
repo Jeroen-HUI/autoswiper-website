@@ -178,7 +178,7 @@
 
   async function loadSummary() {
     loadError.hidden = true;
-    dealerTableBody.innerHTML = '<tr><td colspan="8">Loading…</td></tr>';
+    dealerTableBody.innerHTML = '<tr><td colspan="8">Loading dealerships… this can take a few seconds.</td></tr>';
 
     const { data, error } = await supabase.rpc('get_dealer_analytics_summary', { p_days: days });
 
