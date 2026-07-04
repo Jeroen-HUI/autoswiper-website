@@ -241,12 +241,12 @@ svg { display: block; }
 
 .hero__logo {
   height: 108px;
-  width: auto;
+  width: 108px;
   margin-bottom: 18px;
 }
 .cta__logo {
   height: 88px;
-  width: auto;
+  width: 88px;
   margin: 0 auto 20px;
   display: block;
 }
@@ -587,7 +587,7 @@ svg { display: block; }
   .waitlist__input { padding: 10px 8px; text-align: center; }
   .waitlist__submit { width: 100%; }
   .waitlist__meta { justify-content: center; }
-  .hero__logo { height: 92px; width: auto; }
+  .hero__logo { height: 92px; width: 92px; }
 }
 
 /* ---- Invite landing (/invite) ---- */

@@ -29,13 +29,10 @@
       setStatus(statusEl, 'Joining…', 'loading');
 
       try {
-        const res = await fetch(`${cfg.supabaseUrl}/rest/v1/waitlist_signups`, {
+        const res = await fetch(`${cfg.supabaseUrl}/functions/v1/waitlist-signup`, {
           method: 'POST',
           headers: {
-            apikey: cfg.supabaseAnonKey,
-            Authorization: `Bearer ${cfg.supabaseAnonKey}`,
             'Content-Type': 'application/json',
-            Prefer: 'return=minimal',
           },
           body: JSON.stringify({ email, platform, source: 'website' }),
         });
@@ -49,12 +46,16 @@
         }
 
         const body = await res.json().catch(() => ({}));
-        if (res.status === 409 || body?.code === '23505') {
-          setStatus(statusEl, "You're already on the waitlist — we'll be in touch!", 'success');
+        if (res.status === 429 || body?.error?.includes('waitlist_rate_limit')) {
+          setStatus(statusEl, 'Too many attempts from your network. Please try again later.', 'error');
+          return;
+        }
+        if (body?.error?.includes('waitlist_invalid_email')) {
+          setStatus(statusEl, 'Please enter a valid email address.', 'error');
           return;
         }
 
-        throw new Error(body?.message || `Request failed (${res.status})`);
+        throw new Error(body?.error || `Request failed (${res.status})`);
       } catch (err) {
         setStatus(statusEl, 'Something went wrong. Please try again.', 'error');
         console.error('[waitlist]', err);

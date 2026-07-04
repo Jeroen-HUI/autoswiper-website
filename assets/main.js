@@ -2,6 +2,16 @@
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+// ===== Store badges (from config.js) =====
+const siteCfg = window.AUTOSWIPER_CONFIG || {};
+document.querySelectorAll('[data-play-store-link]').forEach((link) => {
+  if (siteCfg.playStoreUrl) {
+    link.href = siteCfg.playStoreUrl;
+  } else {
+    link.hidden = true;
+  }
+});
+
 // ===== Theme toggle (persisted) =====
 const THEME_KEY = 'autoswiper-theme';
 const root = document.documentElement;
