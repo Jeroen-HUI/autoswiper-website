@@ -118,9 +118,77 @@
 
 
 
-  function money(n) {
+  function money(n, currency) {
 
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(n || 0));
+    return new Intl.NumberFormat('nl-NL', {
+
+      style: 'currency',
+
+      currency: currency || 'EUR',
+
+    }).format(Number(n || 0));
+
+  }
+
+
+
+  function parseOptionalEur(value) {
+
+    const raw = String(value ?? '').trim();
+
+    if (!raw) return null;
+
+    const n = Number(raw);
+
+    return Number.isFinite(n) && n > 0 ? n : null;
+
+  }
+
+
+
+  function formatRate(pct, flatEur, label) {
+
+    if (flatEur != null && Number(flatEur) > 0) {
+
+      return `${label} ${money(flatEur, 'EUR')} flat`;
+
+    }
+
+    return `${label} ${Math.round((pct || 0) * 100)}%`;
+
+  }
+
+
+
+  function fillCreatorForm(partner) {
+
+    if (!partner) return;
+
+    document.getElementById('creatorCode').value = partner.code || '';
+
+    document.getElementById('creatorName').value = partner.display_name || '';
+
+    document.getElementById('creatorEmail').value = partner.email || '';
+
+    document.getElementById('proInitialPct').value = Math.round((partner.pro_initial_pct || 0) * 100);
+
+    document.getElementById('proRenewalPct').value = Math.round((partner.pro_renewal_pct || 0) * 100);
+
+    document.getElementById('boostPct').value = Math.round((partner.boost_pct || 0) * 100);
+
+    document.getElementById('proInitialFlatEur').value =
+
+      partner.pro_initial_flat_eur != null ? partner.pro_initial_flat_eur : '';
+
+    document.getElementById('proRenewalFlatEur').value =
+
+      partner.pro_renewal_flat_eur != null ? partner.pro_renewal_flat_eur : '';
+
+    document.getElementById('boostFlatEur').value =
+
+      partner.boost_flat_eur != null ? partner.boost_flat_eur : '';
+
+    document.getElementById('creatorNotes').value = partner.notes || '';
 
   }
 
@@ -326,7 +394,19 @@
 
     detailTitle.textContent = partner.display_name || partner.code;
 
-    detailSubtitle.textContent = `${partner.code} · ${partner.status} · Pro ${Math.round((partner.pro_initial_pct || 0) * 100)}% · Boost ${Math.round((partner.boost_pct || 0) * 100)}%`;
+    detailSubtitle.textContent = [
+
+      partner.code,
+
+      partner.status,
+
+      formatRate(partner.pro_initial_pct, partner.pro_initial_flat_eur, 'Pro'),
+
+      formatRate(partner.pro_renewal_pct, partner.pro_renewal_flat_eur, 'Renewal'),
+
+      formatRate(partner.boost_pct, partner.boost_flat_eur, 'Boost'),
+
+    ].join(' · ');
 
     detailLink.innerHTML = partner.invite_url
 
@@ -378,7 +458,7 @@
 
           <td class="num">${money(c.net_usd)}</td>
 
-          <td class="num">${money(c.commission_usd)}</td>
+          <td class="num">${money(c.commission_usd, c.currency)}</td>
 
           <td>${escapeHtml(c.payout_status)}</td>
 
@@ -419,6 +499,8 @@
 
 
     detailData = data;
+
+    fillCreatorForm(data.partner);
 
     renderDetail();
 
@@ -506,7 +588,15 @@
 
     const proInitialPct = Number(document.getElementById('proInitialPct').value) / 100;
 
+    const proRenewalPct = Number(document.getElementById('proRenewalPct').value) / 100;
+
     const boostPct = Number(document.getElementById('boostPct').value) / 100;
+
+    const proInitialFlatEur = parseOptionalEur(document.getElementById('proInitialFlatEur').value);
+
+    const proRenewalFlatEur = parseOptionalEur(document.getElementById('proRenewalFlatEur').value);
+
+    const boostFlatEur = parseOptionalEur(document.getElementById('boostFlatEur').value);
 
     const notes = document.getElementById('creatorNotes').value.trim();
 
@@ -522,7 +612,15 @@
 
       p_pro_initial_pct: proInitialPct,
 
+      p_pro_renewal_pct: proRenewalPct,
+
       p_boost_pct: boostPct,
+
+      p_pro_initial_flat_eur: proInitialFlatEur,
+
+      p_pro_renewal_flat_eur: proRenewalFlatEur,
+
+      p_boost_flat_eur: boostFlatEur,
 
       p_notes: notes || null,
 
