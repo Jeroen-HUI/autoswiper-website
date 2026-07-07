@@ -298,3 +298,24 @@
   .admin-dashboard { padding: 20px 16px 48px; }
   .admin-title { font-size: 1.5rem; }
 }
+
+.admin-form--inline {
+  gap: 16px;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px 16px;
+}
+
+.admin-subheading {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 20px 0 10px;
+}
+
+.admin-success {
+  color: #22c55e;
+  font-size: 0.9rem;
+}

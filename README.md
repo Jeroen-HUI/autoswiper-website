@@ -13,6 +13,8 @@ website/
 ├── index.html        ← Landing page (light/dark, app-accurate UI)
 ├── invite/
 │   └── index.html    ← Invite landing (opens app / store fallback)
+├── c/
+│   └── index.html    ← Creator affiliate landing (?ref=CODE)
 ├── .well-known/
 │   ├── assetlinks.json                  ← Android App Links verification
 │   └── apple-app-site-association       ← iOS Universal Links (update TEAMID)
@@ -25,6 +27,7 @@ website/
     ├── main.js        ← Theme toggle (persisted) + small enhancements
     ├── config.js      ← Supabase + store URLs
     ├── invite.js      ← Invite page logic
+    ├── creator.js     ← Creator landing page logic
     └── icon.png       ← Logo / favicon (the app icon)
 ```
 
@@ -101,6 +104,7 @@ git push
 - **iOS Universal Links:** replace `TEAMID` in `.well-known/apple-app-site-association` with your Apple Team ID (find it in [Apple Developer](https://developer.apple.com/account) → Membership, or Expo credentials after iOS setup).
 - **Invite links:** shared from the app as `https://www.useautoswiper.com/invite?code=XXXX`. Deploy this site so `/invite` and `.well-known/*` are live.
 - **Admin analytics:** private dashboard at `/admin/` (not linked from the public site). Sign in with an account on the `app_admins` allowlist in Supabase (`jeroenhuitema2006@gmail.com`, etc.).
+- **Creator affiliates:** landing page at `/c/?ref=CODE` (shared with creators). Admin dashboard at `/admin/creators/` — create partners, view clicks/signups/commissions, mark payouts as paid.
 - **AdMob `app-ads.txt`:** after deploy, verify `https://www.useautoswiper.com/app-ads.txt` loads in a browser. The domain must match **exactly** what is listed as your developer website in Google Play (and App Store Connect for iOS).
 - **Governing law:** `terms.html` currently names the Netherlands — confirm this
   matches your registered entity / jurisdiction.

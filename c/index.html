@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AutoSwiper — Creator link</title>
+
+  <meta name="description" content="Download AutoSwiper and swipe through real car listings." />
+
+  <meta name="robots" content="noindex" />
+
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <link rel="icon" href="../assets/favicon.ico" sizes="any" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/styles.css" />
+
+  <script>
+
+    (function () {
+
+      try {
+
+        var t = localStorage.getItem('autoswiper-theme');
+
+        if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+
+      } catch (e) {}
+
+    })();
+
+  </script>
+
+</head>
+
+<body class="invite-page">
+
+  <main class="invite-shell">
+
+    <a class="invite-brand" href="../index.html">
+
+      <img src="../assets/logo.png?v=4" alt="AutoSwiper" width="72" height="72" />
+
+    </a>
+
+
+
+    <div id="creatorMissing" class="invite-card" hidden>
+
+      <h1 class="invite-title">Invalid creator link</h1>
+
+      <p class="invite-copy">This link is missing a creator code. Ask your creator for their full AutoSwiper link.</p>
+
+      <a class="btn btn--primary invite-btn" href="../index.html">Visit AutoSwiper</a>
+
+    </div>
+
+
+
+    <div id="creatorReady" class="invite-card" hidden>
+
+      <span class="eyebrow">Recommended by</span>
+
+      <h1 class="invite-title" id="creatorTitle">AutoSwiper</h1>
+
+      <p class="invite-copy">
+
+        Swipe through real car listings, save favourites to your garage, and get alerts when prices drop.
+
+      </p>
+
+
+
+      <div class="invite-code-box">
+
+        <span class="invite-code-label">Creator code</span>
+
+        <strong id="creatorCode" class="invite-code-value">------</strong>
+
+      </div>
+
+
+
+      <button class="btn btn--primary invite-btn" id="openAppBtn" type="button">Open in AutoSwiper</button>
+
+
+
+      <div id="creatorFallback" class="invite-fallback" hidden>
+
+        <p class="invite-copy invite-copy--small">
+
+          Install AutoSwiper, then <strong>open this link again</strong>. Your creator will be credited when you sign up and subscribe.
+
+        </p>
+
+        <div class="invite-stores">
+
+          <a class="store-badge" id="playStoreLink" href="https://play.google.com/store/apps/details?id=com.autoswipe" rel="noopener">
+
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M3 20.5V3.5C3 2.91 3.34 2.39 3.84 2.15L13.69 12L3.84 21.85C3.34 21.6 3 21.09 3 20.5ZM16.81 15.12L6.05 21.34L14.54 12.85L16.81 15.12ZM20.16 10.81C20.5 11.08 20.75 11.5 20.75 12C20.75 12.5 20.53 12.9 20.18 13.18L17.89 14.5L15.39 12L17.89 9.5L20.16 10.81ZM6.05 2.66L16.81 8.88L14.54 11.15L6.05 2.66Z"/></svg>
+
+            <span><small>Get it on</small>Google Play</span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+
+  <script src="../assets/config.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+
+  <script src="../assets/creator.js"></script>
+
+</body>
+
+</html>
+

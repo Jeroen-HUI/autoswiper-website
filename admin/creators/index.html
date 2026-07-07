@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta name="robots" content="noindex, nofollow" />
+
+  <title>Creator Affiliates — AutoSwiper Admin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../../assets/styles.css" />
+
+  <link rel="stylesheet" href="../admin.css" />
+
+</head>
+
+<body class="admin-page">
+
+  <div id="loginScreen" class="admin-login">
+
+    <div class="admin-login-card">
+
+      <span class="eyebrow">Private</span>
+
+      <h1 class="admin-login-title">Creator Affiliates</h1>
+
+      <p class="admin-login-copy">Sign in with your admin AutoSwiper account.</p>
+
+      <form id="loginForm" class="admin-form">
+
+        <label class="admin-label" for="email">Email</label>
+
+        <input id="email" class="admin-input" type="email" autocomplete="email" required />
+
+        <label class="admin-label" for="password">Password</label>
+
+        <input id="password" class="admin-input" type="password" autocomplete="current-password" required />
+
+        <p id="loginError" class="admin-error" hidden></p>
+
+        <p id="bootError" class="admin-error" hidden></p>
+
+        <button id="loginSubmitBtn" class="btn btn--primary admin-submit" type="submit">Sign in</button>
+
+      </form>
+
+      <p class="admin-login-copy" style="margin-top:16px"><a href="../">← Dealer analytics</a></p>
+
+    </div>
+
+  </div>
+
+
+
+  <div id="dashboard" class="admin-dashboard" hidden>
+
+    <header class="admin-header">
+
+      <div>
+
+        <span class="eyebrow">AutoSwiper Admin</span>
+
+        <h1 class="admin-title">Creator Affiliates</h1>
+
+        <p id="adminEmail" class="admin-subtitle"></p>
+
+      </div>
+
+      <div class="admin-header-actions">
+
+        <a href="../" class="btn btn--ghost">Dealer analytics</a>
+
+        <button id="refreshBtn" type="button" class="btn btn--ghost admin-refresh">Refresh</button>
+
+        <button id="signOutBtn" type="button" class="btn btn--ghost">Sign out</button>
+
+      </div>
+
+    </header>
+
+
+
+    <section class="admin-panel">
+
+      <div class="admin-panel-head">
+
+        <h2>Add / update creator</h2>
+
+      </div>
+
+      <form id="creatorForm" class="admin-form admin-form--inline">
+
+        <div class="admin-form-grid">
+
+          <div>
+
+            <label class="admin-label" for="creatorCode">Code</label>
+
+            <input id="creatorCode" class="admin-input" type="text" placeholder="JEROEN" required maxlength="20" />
+
+          </div>
+
+          <div>
+
+            <label class="admin-label" for="creatorName">Display name</label>
+
+            <input id="creatorName" class="admin-input" type="text" placeholder="Creator name" required />
+
+          </div>
+
+          <div>
+
+            <label class="admin-label" for="creatorEmail">Email (payout contact)</label>
+
+            <input id="creatorEmail" class="admin-input" type="email" placeholder="creator@example.com" />
+
+          </div>
+
+          <div>
+
+            <label class="admin-label" for="proInitialPct">Pro initial %</label>
+
+            <input id="proInitialPct" class="admin-input" type="number" min="0" max="100" step="1" value="25" />
+
+          </div>
+
+          <div>
+
+            <label class="admin-label" for="boostPct">Boost %</label>
+
+            <input id="boostPct" class="admin-input" type="number" min="0" max="100" step="1" value="15" />
+
+          </div>
+
+          <div>
+
+            <label class="admin-label" for="creatorNotes">Notes</label>
+
+            <input id="creatorNotes" class="admin-input" type="text" placeholder="Optional" />
+
+          </div>
+
+        </div>
+
+        <p id="formError" class="admin-error admin-error--inline" hidden></p>
+
+        <p id="formSuccess" class="admin-success" hidden></p>
+
+        <button type="submit" class="btn btn--primary">Save creator</button>
+
+      </form>
+
+    </section>
+
+
+
+    <section class="admin-kpis" id="kpiRow"></section>
+
+
+
+    <section class="admin-panel">
+
+      <div class="admin-panel-head">
+
+        <h2>Creators</h2>
+
+        <input id="creatorSearch" class="admin-search" type="search" placeholder="Search code or name…" />
+
+      </div>
+
+      <div class="admin-table-wrap">
+
+        <table class="admin-table" id="creatorTable">
+
+          <thead>
+
+            <tr>
+
+              <th>Creator</th>
+
+              <th class="num">Clicks</th>
+
+              <th class="num">Signups</th>
+
+              <th class="num">Pro</th>
+
+              <th class="num">Boosts</th>
+
+              <th class="num">Pending $</th>
+
+              <th class="num">Total $</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody id="creatorTableBody"></tbody>
+
+        </table>
+
+      </div>
+
+      <p id="loadError" class="admin-error admin-error--inline" hidden></p>
+
+    </section>
+
+
+
+    <section class="admin-panel" id="detailPanel" hidden>
+
+      <div class="admin-panel-head">
+
+        <div>
+
+          <h2 id="detailTitle">Creator detail</h2>
+
+          <p id="detailSubtitle" class="admin-subtitle"></p>
+
+          <p id="detailLink" class="admin-subtitle"></p>
+
+        </div>
+
+        <button id="closeDetailBtn" type="button" class="btn btn--ghost">Close</button>
+
+      </div>
+
+      <h3 class="admin-subheading">Attributed signups</h3>
+
+      <div class="admin-table-wrap">
+
+        <table class="admin-table admin-table--detail">
+
+          <thead>
+
+            <tr>
+
+              <th>User</th>
+
+              <th>Source</th>
+
+              <th>Attributed</th>
+
+              <th>Pro</th>
+
+              <th class="num">Commission</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody id="attributionTableBody"></tbody>
+
+        </table>
+
+      </div>
+
+      <h3 class="admin-subheading">Commission events</h3>
+
+      <div class="admin-table-wrap">
+
+        <table class="admin-table admin-table--detail">
+
+          <thead>
+
+            <tr>
+
+              <th><input type="checkbox" id="selectAllCommissions" /></th>
+
+              <th>Type</th>
+
+              <th class="num">Gross</th>
+
+              <th class="num">Net</th>
+
+              <th class="num">Commission</th>
+
+              <th>Status</th>
+
+              <th>Date</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody id="commissionTableBody"></tbody>
+
+        </table>
+
+      </div>
+
+      <button id="markPaidBtn" type="button" class="btn btn--primary" hidden>Mark selected as paid</button>
+
+    </section>
+
+  </div>
+
+
+
+  <script src="../../assets/config.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+
+  <script src="creators.js"></script>
+
+</body>
+
+</html>
+
