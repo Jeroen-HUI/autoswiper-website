@@ -16,15 +16,22 @@
     <div class="admin-login-card">
       <span class="eyebrow">Private</span>
       <h1 class="admin-login-title">Dealer Analytics</h1>
-      <p class="admin-login-copy">Sign in with your admin AutoSwiper account.</p>
+      <p class="admin-login-copy">Sign in with the same Google or email account you use in the AutoSwiper app.</p>
+
+      <button id="googleSignInBtn" type="button" class="btn btn--oauth admin-submit">Continue with Google</button>
+
+      <p class="admin-login-divider">or use email + password</p>
+
       <form id="loginForm" class="admin-form">
         <label class="admin-label" for="email">Email</label>
         <input id="email" class="admin-input" type="email" autocomplete="email" required />
         <label class="admin-label" for="password">Password</label>
-        <input id="password" class="admin-input" type="password" autocomplete="current-password" required />
+        <input id="password" class="admin-input" type="password" autocomplete="current-password" />
         <p id="loginError" class="admin-error" hidden></p>
+        <p id="loginSuccess" class="admin-success" hidden></p>
         <p id="bootError" class="admin-error" hidden></p>
         <button id="loginSubmitBtn" class="btn btn--primary admin-submit" type="submit">Sign in</button>
+        <button id="magicLinkBtn" type="button" class="btn btn--ghost admin-submit">Email me a sign-in link</button>
       </form>
     </div>
   </div>
@@ -106,6 +113,7 @@
 
   <script src="../assets/config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="../assets/adminAuth.js"></script>
   <script src="admin.js"></script>
 </body>
 </html>
