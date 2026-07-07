@@ -15,7 +15,6 @@
         persistSession: true,
         autoRefreshToken: true,
         detectSessionInUrl: true,
-        flowType: 'pkce',
       },
     });
   }
@@ -51,6 +50,7 @@
     const magicBtn = elements.magicBtn;
 
     let busy = false;
+    let signedIn = false;
 
     function showError(message) {
       if (successEl) successEl.hidden = true;
@@ -83,26 +83,28 @@
       if (magicBtn) magicBtn.disabled = active;
     }
 
-    supabase.auth.onAuthStateChange((event, session) => {
-      if (session?.user && (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED')) {
-        void onSignedIn(session.user);
-      }
-    });
+    function resetBusyState() {
+      setBusy(false);
+    }
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (busy) return;
+    resetBusyState();
+
+    async function handlePasswordSignIn() {
+      if (busy) {
+        showError('Still working on the last sign-in attempt. Wait a moment, or refresh the page.');
+        return;
+      }
 
       clearMessages();
-      const email = normalizeEmail(emailInput.value);
-      const password = passwordInput.value;
+      const email = normalizeEmail(emailInput?.value);
+      const password = passwordInput?.value || '';
 
       if (!email || !password) {
         showError('Enter your email and password.');
         return;
       }
 
-      setBusy(true);
+      setBusy(true, 'Signing in…');
       try {
         const { data, error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) {
@@ -113,44 +115,104 @@
           );
           return;
         }
+        if (!data.user) {
+          showError('Sign in did not return a user. Try again.');
+          return;
+        }
+        signedIn = true;
         await onSignedIn(data.user);
       } catch (err) {
         showError(err?.message || 'Sign in failed. Check your connection and try again.');
       } finally {
-        setBusy(false);
+        resetBusyState();
+      }
+    }
+
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (!session?.user || signedIn) return;
+      if (event === 'SIGNED_IN') {
+        signedIn = true;
+        resetBusyState();
+        void onSignedIn(session.user);
       }
     });
 
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      void handlePasswordSignIn();
+    });
+
+    if (submitBtn) {
+      submitBtn.addEventListener('click', (e) => {
+        if (form && typeof form.requestSubmit === 'function') {
+          e.preventDefault();
+          form.requestSubmit();
+        }
+      });
+    }
+
     if (googleBtn) {
       googleBtn.addEventListener('click', async () => {
-        if (busy) return;
+        if (busy) {
+          showError('Still working on the last sign-in attempt. Wait a moment, or refresh the page.');
+          return;
+        }
+
         clearMessages();
         setBusy(true, 'Redirecting…');
+
+        let redirected = false;
+        const resetTimer = window.setTimeout(() => {
+          if (!redirected) {
+            resetBusyState();
+            showError(
+              'Google sign-in did not start. In Supabase → Authentication → URL Configuration, add https://www.useautoswiper.com/admin/ as a redirect URL.',
+            );
+          }
+        }, 4000);
+
         try {
-          const { error } = await supabase.auth.signInWithOAuth({
+          const { data, error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
               redirectTo: redirectUrl(),
               queryParams: { prompt: 'select_account' },
             },
           });
+
           if (error) {
+            window.clearTimeout(resetTimer);
             showError(error.message);
-            setBusy(false);
+            resetBusyState();
+            return;
           }
+
+          if (data?.url) {
+            redirected = true;
+            window.location.assign(data.url);
+            return;
+          }
+
+          window.clearTimeout(resetTimer);
+          showError('Google sign-in did not return a redirect URL.');
+          resetBusyState();
         } catch (err) {
+          window.clearTimeout(resetTimer);
           showError(err?.message || 'Google sign-in failed.');
-          setBusy(false);
+          resetBusyState();
         }
       });
     }
 
     if (magicBtn) {
       magicBtn.addEventListener('click', async () => {
-        if (busy) return;
-        clearMessages();
+        if (busy) {
+          showError('Still working on the last sign-in attempt. Wait a moment, or refresh the page.');
+          return;
+        }
 
-        const email = normalizeEmail(emailInput.value);
+        clearMessages();
+        const email = normalizeEmail(emailInput?.value);
         if (!email) {
           showError('Enter your email first, then request a sign-in link.');
           return;
@@ -170,7 +232,7 @@
         } catch (err) {
           showError(err?.message || 'Could not send sign-in link.');
         } finally {
-          setBusy(false);
+          resetBusyState();
         }
       });
     }

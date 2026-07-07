@@ -239,8 +239,6 @@
     detailPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  loginForm.addEventListener('submit', (e) => e.preventDefault());
-
   window.AdminAuth.wireLoginForm(
     supabase,
     {
