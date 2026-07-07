@@ -25,18 +25,16 @@
     return;
   }
 
-  if (!window.AdminAuth?.createClient) {
-    showBootError('Could not load admin auth helpers. Hard refresh (Ctrl+F5) and try again.');
+  if (!window.supabase?.createClient) {
+    showBootError(
+      'Could not load Supabase. Open this page via https://www.useautoswiper.com/admin/ (not as a local file).',
+    );
     return;
   }
 
-  let supabase;
-  try {
-    supabase = window.AdminAuth.createClient(cfg);
-  } catch (error) {
-    showBootError(`Failed to start Supabase: ${error?.message || error}`);
-    return;
-  }
+  const supabase = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
+    auth: { persistSession: true, autoRefreshToken: true },
+  });
 
   const loginScreen = document.getElementById('loginScreen');
   const dashboard = document.getElementById('dashboard');
@@ -91,6 +89,7 @@
   }
 
   function showDashboard(email) {
+    loginError.hidden = true;
     loginScreen.hidden = true;
     dashboard.hidden = false;
     adminEmail.textContent = email || '';
@@ -239,23 +238,40 @@
     detailPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  window.AdminAuth.wireLoginForm(
-    supabase,
-    {
-      form: loginForm,
-      errorEl: loginError,
-      successEl: document.getElementById('loginSuccess'),
-      submitBtn: loginSubmitBtn,
-      emailInput: document.getElementById('email'),
-      passwordInput: document.getElementById('password'),
-      googleBtn: document.getElementById('googleSignInBtn'),
-      magicBtn: document.getElementById('magicLinkBtn'),
-    },
-    async (user) => {
-      showDashboard(user?.email);
-      await loadSummary();
-    },
-  );
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    loginError.hidden = true;
+
+    const email = document.getElementById('email').value.trim().toLowerCase();
+    const password = document.getElementById('password').value;
+
+    if (!email || !password) {
+      loginError.textContent = 'Enter your email and password.';
+      loginError.hidden = false;
+      return;
+    }
+
+    loginSubmitBtn.disabled = true;
+    loginSubmitBtn.textContent = 'Signing in…';
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        loginError.textContent = error.message;
+        loginError.hidden = false;
+        return;
+      }
+
+      showDashboard(data.user?.email);
+      void loadSummary();
+    } catch (err) {
+      loginError.textContent = err?.message || 'Sign in failed. Check your connection and try again.';
+      loginError.hidden = false;
+    } finally {
+      loginSubmitBtn.disabled = false;
+      loginSubmitBtn.textContent = 'Sign in';
+    }
+  });
 
   signOutBtn.addEventListener('click', async () => {
     await supabase.auth.signOut();
@@ -319,11 +335,10 @@
     );
   }
 
-  void window.AdminAuth.initSession(supabase, {
-    showLogin,
-    onSignedIn: async (user) => {
-      showDashboard(user?.email);
-      await loadSummary();
-    },
+  supabase.auth.getSession().then(({ data }) => {
+    if (data.session?.user) {
+      showDashboard(data.session.user.email);
+      void loadSummary();
+    }
   });
 })();

@@ -34,9 +34,9 @@
 
 
 
-  if (!window.AdminAuth?.createClient) {
+  if (!window.supabase?.createClient) {
 
-    showBootError('Could not load admin auth helpers. Hard refresh (Ctrl+F5) and try again.');
+    showBootError('Could not load Supabase.');
 
     return;
 
@@ -44,7 +44,11 @@
 
 
 
-  const supabase = window.AdminAuth.createClient(cfg);
+  const supabase = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
+
+    auth: { persistSession: true, autoRefreshToken: true },
+
+  });
 
 
 
@@ -424,39 +428,63 @@
 
 
 
-  window.AdminAuth.wireLoginForm(
+  loginForm.addEventListener('submit', async (e) => {
 
-    supabase,
+    e.preventDefault();
 
-    {
+    loginError.hidden = true;
 
-      form: loginForm,
+    const email = document.getElementById('email').value.trim().toLowerCase();
 
-      errorEl: loginError,
+    const password = document.getElementById('password').value;
 
-      successEl: document.getElementById('loginSuccess'),
+    if (!email || !password) {
 
-      submitBtn: loginSubmitBtn,
+      loginError.textContent = 'Enter your email and password.';
 
-      emailInput: document.getElementById('email'),
+      loginError.hidden = false;
 
-      passwordInput: document.getElementById('password'),
+      return;
 
-      googleBtn: document.getElementById('googleSignInBtn'),
+    }
 
-      magicBtn: document.getElementById('magicLinkBtn'),
+    loginSubmitBtn.disabled = true;
 
-    },
+    loginSubmitBtn.textContent = 'Signing in…';
 
-    async (user) => {
+    try {
 
-      showDashboard(user?.email);
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
-      await loadSummary();
+      if (error) {
 
-    },
+        loginError.textContent = error.message;
 
-  );
+        loginError.hidden = false;
+
+        return;
+
+      }
+
+      showDashboard(data.user?.email);
+
+      void loadSummary();
+
+    } catch (err) {
+
+      loginError.textContent = err?.message || 'Sign in failed. Check your connection and try again.';
+
+      loginError.hidden = false;
+
+    } finally {
+
+      loginSubmitBtn.disabled = false;
+
+      loginSubmitBtn.textContent = 'Sign in';
+
+    }
+
+  });
 
 
 
@@ -630,17 +658,15 @@
 
 
 
-  void window.AdminAuth.initSession(supabase, {
+  supabase.auth.getSession().then(({ data }) => {
 
-    showLogin,
+    if (data.session?.user) {
 
-    onSignedIn: async (user) => {
+      showDashboard(data.session.user.email);
 
-      showDashboard(user?.email);
+      void loadSummary();
 
-      await loadSummary();
-
-    },
+    }
 
   });
 
