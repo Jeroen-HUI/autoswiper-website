@@ -11,6 +11,13 @@ document.querySelectorAll('[data-play-store-link]').forEach((link) => {
     link.hidden = true;
   }
 });
+document.querySelectorAll('[data-app-store-link]').forEach((link) => {
+  if (siteCfg.appStoreUrl) {
+    link.href = siteCfg.appStoreUrl;
+  } else {
+    link.hidden = true;
+  }
+});
 
 // ===== Theme toggle (persisted) =====
 const THEME_KEY = 'autoswiper-theme';

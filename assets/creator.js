@@ -125,12 +125,27 @@
     var openBtn = document.getElementById('openAppBtn');
 
     var playLink = document.getElementById('playStoreLink');
+    var appStoreLink = document.getElementById('appStoreLink');
 
 
 
     if (playLink && cfg.playStoreUrl) {
 
       playLink.href = cfg.playStoreUrl;
+
+    } else if (playLink) {
+
+      playLink.hidden = true;
+
+    }
+
+    if (appStoreLink && cfg.appStoreUrl) {
+
+      appStoreLink.href = cfg.appStoreUrl;
+
+    } else if (appStoreLink) {
+
+      appStoreLink.hidden = true;
 
     }
 

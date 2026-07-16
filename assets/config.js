@@ -6,5 +6,5 @@ window.AUTOSWIPER_CONFIG = {
   appScheme: 'autoswipe',
   /** Update when store listings go live */
   playStoreUrl: 'https://play.google.com/store/apps/details?id=com.autoswipe',
-  appStoreUrl: '',
+  appStoreUrl: 'https://apps.apple.com/us/app/autoswiper/id6783497859',
 };
